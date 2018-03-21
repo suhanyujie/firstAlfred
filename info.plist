@@ -7,7 +7,19 @@
 	<key>category</key>
 	<string>Tools</string>
 	<key>connections</key>
-	<dict/>
+	<dict>
+		<key>623A51F2-BF15-4517-8D03-B3C5EBF9440B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BD38B42D-4503-461B-BA69-9EF637465BB1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
 	<key>createdby</key>
 	<string>suhanyu</string>
 	<key>description</key>
@@ -21,10 +33,27 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>http://php.net/manual/zh/function.{query}.php</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>BD38B42D-4503-461B-BA69-9EF637465BB1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
-				<integer>102</integer>
+				<integer>36</integer>
 				<key>keyword</key>
 				<string>bs</string>
 				<key>queuedelaycustom</key>
@@ -38,11 +67,11 @@
 				<key>runningsubtext</key>
 				<string>please wait...</string>
 				<key>script</key>
-				<string>php /www/test/test/tool/youdao/index.php "{query}"</string>
+				<string>/usr/local/bin/php public/index.php {query}</string>
 				<key>subtext</key>
 				<string>test</string>
 				<key>title</key>
-				<string>查询翻译...</string>
+				<string>查询中...</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -61,6 +90,11 @@
 	<key>uidata</key>
 	<dict>
 		<key>623A51F2-BF15-4517-8D03-B3C5EBF9440B</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>BD38B42D-4503-461B-BA69-9EF637465BB1</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
