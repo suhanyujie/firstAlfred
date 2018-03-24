@@ -12,13 +12,26 @@ include('vendor/autoload.php');
 use GuzzleHttp\Client;
 use QL\QueryList;
 
+// 参数1 标识功能
 $param1 = $argv[1];
+$param2 = $argv[2];
+
+switch ($param1) {
+    case 'tool:translate':// 有道翻译
+        
+        echo 123;
+        exit();
+        break;
+    case 'php:functionManual':// PHP函数手册
+}
+
+
 $client = new Client([
     'base_uri' => 'http://php.net',// http://php.net/manual/zh/function.json-encode.php
     'timeout'  => 5,
 ]);
 // 查询的url拼接，因为PHP官网的搜索会将下划线_替换成-
-$tmpName = str_replace('_','-',$param1);
+$tmpName = str_replace('_','-',$param2);
 $response = $client->request('get', 'manual/zh/function.'.$tmpName.'.php');
 $body = $response->getBody();
 
