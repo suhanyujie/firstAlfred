@@ -9,16 +9,17 @@
 namespace App\Services\Alfred\Tool;
 
 use App\Services\Alfred\Output\Sxml;
-use Illuminate\Validation\Validator;
 use GuzzleHttp\Client;
-use QL\QueryList;
 
 class Syoudao
 {
     const API_URL = 'http://openapi.youdao.com/api';
     
-    
-    
+    /**
+     * @desc 获取有道词典的查询结果
+     * @param array $paramArr
+     * @return string
+     */
     public function youdao($paramArr = [])
     {
         $options = [
@@ -50,6 +51,7 @@ class Syoudao
      */
     public function setArray($arr = [])
     {
+        // 查询的单词的释义
         $resultArr = [
             0 => [
                 'id'      => 'init',
@@ -59,6 +61,7 @@ class Syoudao
                 'nextArg' => $arr['query'],
             ],
         ];
+        // 网络释义的数据组装
         if (isset($arr['web']) && $arr['web']) {
             foreach ($arr['web'] as $k=>$item) {
                 $tmp = [
