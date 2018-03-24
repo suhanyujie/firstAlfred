@@ -1,83 +1,60 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: suhanyu
- * Date: 18/3/21
- * Time: 上午9:59
- */
-define('_ROOT_', dirname(__DIR__));
-
-include('vendor/autoload.php');
-
-use GuzzleHttp\Client;
-use QL\QueryList;
-
-// 参数1 标识功能
-$param1 = $argv[1];
-$param2 = $argv[2];
-
-switch ($param1) {
-    case 'tool:translate':// 有道翻译
-        
-        echo 123;
-        exit();
-        break;
-    case 'php:functionManual':// PHP函数手册
-}
-
-
-$client = new Client([
-    'base_uri' => 'http://php.net',// http://php.net/manual/zh/function.json-encode.php
-    'timeout'  => 5,
-]);
-// 查询的url拼接，因为PHP官网的搜索会将下划线_替换成-
-$tmpName = str_replace('_','-',$param2);
-$response = $client->request('get', 'manual/zh/function.'.$tmpName.'.php');
-$body = $response->getBody();
-
-$rules = [
-    'functionName'=>['#layout-content h1.refname', 'text'],
-    'description'=>['#layout-content div.description p.rdfs-comment', 'text'],
-];
-$ql = QueryList::html($body)->rules($rules)->query();
-$data = $ql->getData()->all();
-// 渲染成xml输出
-$xmlString = '<?xml version="1.0" encoding="utf-8"?>
-<items>';
-foreach ($data as $k=>$row) {
-    $xmlString .= renderXml([
-        'title'   => $row['functionName'],
-        'data'    => $row['description'],
-        'id'      => $k,
-        'index'   => $k,
-        'nextArg' => $tmpName,
-    ]);
-}
-$xmlString .= '</items>';
-echo $xmlString;die;
 
 /**
- * @desc 将数据渲染成Alfred需要的xml
- * @param array $paramArr
- * @return string
+ * Laravel - A PHP Framework For Web Artisans
+ *
+ * @package  Laravel
+ * @author   Taylor Otwell <taylor@laravel.com>
  */
-function renderXml($paramArr = [])
-{
-    $options = [
-        'title'   => '',
-        'data'    => '',
-        'id'      => '',
-        'index'   => '',
-        'nextArg' => '',
-    ];
-    is_array($paramArr) && $options = array_merge($options, $paramArr);
-    extract($options);
-    $string = '<item valid="yes" arg="' . $nextArg . '" uid="' . $index . '">
-					<title><![CDATA[' . $title . ']]></title>
-					<subtitle><![CDATA[' . $data . ']]> </subtitle>
-					<icon>icon.png</icon>
-			    </item>';
-    
-    return $string;
-}
 
+define('LARAVEL_START', microtime(true));
+
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader for
+| our application. We just need to utilize it! We'll simply require it
+| into the script here so that we don't have to worry about manual
+| loading any of our classes later on. It feels great to relax.
+|
+*/
+
+require __DIR__.'/../vendor/autoload.php';
+
+/*
+|--------------------------------------------------------------------------
+| Turn On The Lights
+|--------------------------------------------------------------------------
+|
+| We need to illuminate PHP development, so let us turn on the lights.
+| This bootstraps the framework and gets it ready for use, then it
+| will load up this application so that we can run it and send
+| the responses back to the browser and delight our users.
+|
+*/
+
+$app = require_once __DIR__.'/../bootstrap/app.php';
+
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Once we have the application, we can handle the incoming request
+| through the kernel, and send the associated response back to
+| the client's browser allowing them to enjoy the creative
+| and wonderful application we have prepared for them.
+|
+*/
+
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+
+$response = $kernel->handle(
+    $request = Illuminate\Http\Request::capture()
+);
+
+$response->send();
+
+$kernel->terminate($request, $response);
