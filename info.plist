@@ -27,7 +27,7 @@
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>百思不得解2018</string>
+	<string>php手册2018</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -55,7 +55,7 @@
 				<key>escaping</key>
 				<integer>36</integer>
 				<key>keyword</key>
-				<string>bs</string>
+				<string>php</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -67,7 +67,7 @@
 				<key>runningsubtext</key>
 				<string>please wait...</string>
 				<key>script</key>
-				<string>/usr/local/bin/php public/index.php php:functionManual {query}</string>
+				<string>/usr/local/bin/php  artisan tool:phpManual {query}</string>
 				<key>subtext</key>
 				<string>test</string>
 				<key>title</key>
