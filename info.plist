@@ -67,11 +67,11 @@
 				<key>runningsubtext</key>
 				<string>please wait...</string>
 				<key>script</key>
-				<string>/usr/local/bin/php  artisan tool:phpManual {query}</string>
+				<string>/usr/local/bin/php artisan tool:phpManual {query}</string>
 				<key>subtext</key>
 				<string>test</string>
 				<key>title</key>
-				<string>查询中...</string>
+				<string>函数查询中...</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>

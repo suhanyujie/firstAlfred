@@ -28,7 +28,7 @@ class Syoudao
         is_array($paramArr) && $options = array_merge($options, $paramArr);
         extract($options);
         $param = $this->initParam([
-            'q' => $keyword,
+            'q' => $options['keyword'],
         ]);
         $result = $this->post([
             'param' => $param,
@@ -92,7 +92,7 @@ class Syoudao
         extract($options);
         $client = new Client();
         $result = $client->request('post', self::API_URL, [
-            'form_params' => $param,
+            'form_params' => $options['param'],
         ]);
         $result = (string)$result->getBody();
         $result = \GuzzleHttp\json_decode($result, true);
@@ -112,6 +112,7 @@ class Syoudao
         ];
         is_array($paramArr) && $options = array_merge($options, $paramArr);
         extract($options);
+        $q = $options['q'];
         $param = [
             'q'         => $q,
             'from'      => 'auto',
@@ -151,7 +152,7 @@ class Syoudao
         extract($options);
         // todo 参数验证
         
-        $str = $appKey.$q.$salt.$secretKey;
+        $str = $options['appKey'].$options['q'].$options['salt'].$options['secretKey'];
         return md5($str);
     }
 }

@@ -22,9 +22,9 @@ class Sxml
         ];
         is_array($paramArr) && $options = array_merge($options, $paramArr);
         extract($options);
-        $string = '<item valid="yes" arg="' . $nextArg . '" uid="' . $index . '">
-					<title><![CDATA[' . $title . ']]></title>
-					<subtitle><![CDATA[' . $data . ']]> </subtitle>
+        $string = '<item valid="yes" arg="' . $options['nextArg'] . '" uid="' . $options['index'] . '">
+					<title><![CDATA[' . $options['title'] . ']]></title>
+					<subtitle><![CDATA[' . $options['data'] . ']]> </subtitle>
 					<icon>icon.png</icon>
 			    </item>';
     
