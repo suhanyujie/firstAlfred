@@ -30,7 +30,7 @@ class SphpManual
             'timeout'  => 5,
         ]);
         // 查询的url拼接，因为PHP官网的搜索会将下划线_替换成-
-        $tmpName = str_replace('_','-',$functionName);
+        $tmpName = str_replace('_','-',$options['functionName']);
         $response = $client->request('get', 'manual/zh/function.'.$tmpName.'.php');
         $body = $response->getBody();
         $rules = [
